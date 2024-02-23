@@ -5,7 +5,7 @@ public class Avion {
 	private String nombre;
 	private int capacidad;
 	
-	// metodos
+	// Metodos
 	public String getNombre() {
 		return nombre;
 	}

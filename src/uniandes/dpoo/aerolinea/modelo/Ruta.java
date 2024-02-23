@@ -6,7 +6,16 @@ package uniandes.dpoo.aerolinea.modelo;
 public class Ruta
 {
     // TODO completar
-
+	// Atributos 
+	private String horaSalina; 
+	private String horaLlegada;
+	private String codigoRuta; 
+	
+	//Constructores
+	public Ruta(Aeropuerto origen, Aeropuerto destino, String horaSalina, String horaLlegada, String codigoRuta)
+	{
+		//TODOOOO
+	}
 
     /**
      * Dada una cadena con una hora y minutos, retorna los minutos.

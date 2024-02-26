@@ -164,6 +164,7 @@ public class Aerolinea
     public Vuelo getVuelo( String codigoRuta, String fechaVuelo )
     {
         // TODO implementar
+    	
         return null;
     }
 
@@ -183,7 +184,8 @@ public class Aerolinea
     public Collection<Tiquete> getTiquetes( )
     {
         // TODO implementar
-        return null;
+    	
+    	return Vuelo.getTiquetes();
 
     }
 
@@ -266,6 +268,7 @@ public class Aerolinea
     public void programarVuelo( String fecha, String codigoRuta, String nombreAvion ) throws Exception
     {
         // TODO Implementar el método
+    	
     }
 
     /**

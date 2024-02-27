@@ -26,4 +26,12 @@ public abstract class Cliente {
 	    this.tiquete.add( tiquete );
 	 }
 	 
+	public int calcularValorTotalTiquetes() {
+		int valor=0;
+		for (Tiquete tiquete2 : tiquete) {
+			valor+= Tiquete.getTarifa();
+			
+		}
+		return valor;
+	}
 }

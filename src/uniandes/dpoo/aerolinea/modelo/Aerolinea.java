@@ -165,7 +165,11 @@ public class Aerolinea
     public Vuelo getVuelo( String codigoRuta, String fechaVuelo )
     {
         // TODO implementar
+    	if (this.vuelos.contains(fechaVuelo) == true)
+    	{	
     	
+    		return Vuelo;
+    	}
         return null;
     }
 

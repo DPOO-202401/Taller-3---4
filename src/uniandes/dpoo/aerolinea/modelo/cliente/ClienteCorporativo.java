@@ -38,7 +38,7 @@ public class ClienteCorporativo extends Cliente
 	
 	public String getIdentificador() {
 		
-		return null;
+		return getNombreEmpresa();
 	}
     /**
      * Crea un nuevo objeto de tipo a partir de un objeto JSON.

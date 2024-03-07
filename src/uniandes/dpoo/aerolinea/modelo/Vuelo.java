@@ -11,20 +11,20 @@ public class Vuelo {
 	// Atributos
 	private String fecha;
 	private static Map<String, Tiquete> tiquetes;
-	private Ruta ruta;
-	private Avion avion;
+	private static Ruta ruta;
+	private static Avion avion;
 
 	public String getFecha() 
 	{
 		return fecha;
 	}
 	
-	public Ruta getRuta() {
+	public static Ruta getRuta() {
 		return ruta;
 	}
 
 
-	public Avion getAvion() {
+	public static Avion getAvion() {
 		return avion;
 	}
 

@@ -1,12 +1,14 @@
 package uniandes.dpoo.aerolinea.tiquetes;
 
+import java.util.Collection;
+
 import uniandes.dpoo.aerolinea.modelo.Vuelo;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 
 public class Tiquete {
 	
 	
-	private int	tarifa;
+	private static int	tarifa;
 	private boolean	usado;
 	private String codigo;
 	private Cliente	cliente;
@@ -17,7 +19,7 @@ public class Tiquete {
 
 	public Tiquete(String codigo, Vuelo vuelo, Cliente cliente, int tarifa, boolean usado) {
 		super();
-		this.tarifa = tarifa;
+		Tiquete.tarifa = tarifa;
 		this.usado = usado;
 		this.codigo = codigo;
 		this.cliente = cliente;
@@ -26,7 +28,7 @@ public class Tiquete {
 
 	
 
-	public int getTarifa() {
+	public static int getTarifa() {
 		return tarifa;
 	}
 
@@ -44,6 +46,17 @@ public class Tiquete {
 	public Vuelo getVuelo() {
 		return vuelo;
 	}
+
+
+
+	public void marcarComoUsado() {
+		usado = true;
+		
+	}
+
+
+
+
 
 
 	

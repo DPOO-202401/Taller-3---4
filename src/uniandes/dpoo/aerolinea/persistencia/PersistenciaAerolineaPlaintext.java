@@ -34,10 +34,12 @@ public class PersistenciaAerolineaPlaintext implements IPersistenciaAerolinea
     private static final String HORA_LLEGADA = "horaLlegada";
     private static final String CODIGO_RUTA = "codigoRuta";
     private static final String NOMBRE_AEROPUERTO = "nombreAeropuerto";
+    private static final String NOMBRE_CIUDAD = "nombreCiudad";
     private static final String FECHA = "fecha";
     private static final String CODIGO_AEROPUERTO = "codigoAeropuerto";
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
+    
     
     @Override
     public void cargarAerolinea( String archivo, Aerolinea aerolinea ) {
@@ -47,8 +49,9 @@ public class PersistenciaAerolineaPlaintext implements IPersistenciaAerolinea
 
          cargarAerolinea( aerolinea, raiz.getJSONArray( "aerolinea" ) );
          cargarVuelo ( aerolinea, raiz.getJSONArray( "vuelos" ) );
-         salvarRuta( aerolinea, raiz.getJSONArray( "rutas" ) );
+         cargarRuta( aerolinea, raiz.getJSONArray( "rutas" ) );
          cargarAeropuerto( aerolinea, raiz.getJSONArray( "aeropuertos" ) );
+         cargarAvion(aerolinea, raiz.getJSONArray( "aviones" ) );
          
 	}
     @Override
@@ -57,10 +60,12 @@ public class PersistenciaAerolineaPlaintext implements IPersistenciaAerolinea
         JSONObject jobject = new JSONObject( );
 
         
+        salvarAerolinea( aerolinea, jobject );
         salvarVuelo( aerolinea, jobject );
         salvarRuta( aerolinea, jobject );
+        salvarAeropuerto( aerolinea, jobject );
         salvarAvion( aerolinea, jobject );
-        salvarAerolinea( aerolinea, jobject );
+        
 
         // Escribir la estructura JSON en un archivo
         PrintWriter pw = new PrintWriter( archivo );
@@ -134,13 +139,67 @@ private void salvarRuta(  Aerolinea aerolinea, JSONObject jobject)
        
     }
 
-    jobject.put( "vuelos", jRutas );
+    jobject.put( "rutas", jRutas );
 }
     
 
-    
-    
-    
+public void cargarAeropuerto( Aerolinea aerolinea, JSONArray jAeropuertos ) 
+{
+	int numAeropueros = jAeropuertos.length( );
+    for( int i = 0; i < numAeropueros; i++ )
+    {
+        JSONObject aeropuerto = jAeropuertos.getJSONObject( i );
+        
+        String nombre = aeropuerto.getString( NOMBRE_AEROPUERTO );
+        String codigo = aeropuerto.getString( CODIGO_AEROPUERTO );
+        String ciudad = aeropuerto.getString( NOMBRE_CIUDAD );
+        String latitud = aeropuerto.getString( LATITUD );
+        String longitud = aeropuerto.getString( LONGITUD );
+        
+        
+          
+        Aeropuerto nuevoAeropuerto = new Aeropuerto(nombre, codigo, ciudad, latitud,longitud);
+        
+        aerolinea.programarVuelo(longitud, codigo, nombre);
+       
+    }
+}
+
+private void salvarAeropuerto( Aerolinea aerolinea, JSONObject jobject )
+{
+    JSONArray jAeropuertos = new JSONArray( );
+    for( Aeropuerto aeropuerto : aerolinea.getRuta(CODIGO_RUTA ) )
+    {
+        
+            JSONObject jAeropuerto = new JSONObject( );
+            
+            jAeropuerto.put(  CODIGO_AEROPUERTO , aeropuerto  );
+            jAeropuertos.put( jAeropuerto );   
+       
+    }
+
+    jobject.put( "aeropuertos", jAeropuertos );
+}
+   
+public void cargarAvion( Aerolinea aerolinea, JSONArray jAviones ) 
+{
+	int numAviones = jAviones.length( );
+    for( int i = 0; i < numAviones; i++ )
+    {
+        JSONObject avion = jAviones.getJSONObject( i );
+        String nombre = avion.getString( NOMBRE_AVION );
+        int capacidad = (int) avion.get( CAPACIDAD_AVION )  ;
+        
+       ;
+
+          
+        Avion nuevoAvion = new Avion(nombre,capacidad);
+        
+        aerolinea.agregarAvion(nuevoAvion);
+       
+    }
+}
+
     
     private void salvarAerolinea( Aerolinea aerolinea, JSONObject jobject )
     {

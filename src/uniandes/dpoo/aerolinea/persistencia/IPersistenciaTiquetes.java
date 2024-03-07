@@ -25,6 +25,7 @@ public interface IPersistenciaTiquetes
      * @param aerolinea La aerolínea que tiene la información que se quiere almacenar
      * @throws IOException Se lanza esta excepción si hay problemas escribiendo el archivo
      */
+    
     public void salvarTiquetes( String archivo, Aerolinea aerolinea ) throws IOException;
-
+    
 }

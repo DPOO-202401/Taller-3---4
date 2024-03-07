@@ -9,8 +9,8 @@ public class Ruta
 	private String horaSalina; 
 	private String horaLlegada;
 	private String codigoRuta; 
-	private Aeropuerto origen;
-	private Aeropuerto destino;
+	private static Aeropuerto origen;
+	private static Aeropuerto destino;
 	
 	//Constructores
 	
@@ -20,8 +20,8 @@ public class Ruta
 		this.horaSalina = horaSalina;
 		this.horaLlegada = horaLlegada;
 		this.codigoRuta = codigoRuta;
-		this.origen = origen;
-		this.destino = destino;
+		Ruta.origen = origen;
+		Ruta.destino = destino;
 	}
 
 	//metodos
@@ -30,11 +30,11 @@ public class Ruta
 		return horaSalina;
 	}
 
-	public Aeropuerto getOrigen() {
+	public static Aeropuerto getOrigen() {
 		return origen;
 	}
 
-	public Aeropuerto getDestino() {
+	public static Aeropuerto getDestino() {
 		return destino;
 	}
 
